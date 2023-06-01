@@ -1,4 +1,4 @@
-#!/bin/basha
+#!/bin/bash
 
 # Retrieve the parameter values
 DB_HOST=$(aws ssm get-parameter --name "/myapp/DB_HOST" --query "Parameter.Value" --output text)
