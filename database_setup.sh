@@ -1,5 +1,22 @@
 #!/bin/bash
 
+# AWS CLI SETUP
+
+mkdir -p ~/.aws
+
+# Create the file if it doesn't exist, or append to it if it does
+if [ ! -f ~/.aws/config ]; then
+    touch ~/.aws/config
+fi
+
+REGION=$(aws ssm get-parameter --name "/myapp/REGION" --query "Parameter.Value" --output text)
+
+cat > ~/.aws/config <<EOF
+[default]
+region = $REGION
+output = json
+EOF
+
 # Retrieve the parameter values
 DB_HOST=$(aws ssm get-parameter --name "/myapp/DB_HOST" --query "Parameter.Value" --output text)
 DB_USER=$(aws ssm get-parameter --name "/myapp/DB_USER" --with-decryption --query "Parameter.Value" --output text)
@@ -19,5 +36,4 @@ GRANT ALL PRIVILEGES ON ${DB_NAME}.* TO '${DB_NEWUSER}'@'%';
 
 FLUSH PRIVILEGES;
 
-EXIT;
 EOF
