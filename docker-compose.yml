@@ -23,8 +23,8 @@ services:
     container_name: phpmyadmin
     restart: always
     environment:
-      PMA_HOST: ${dbhost}:3306
-      VIRTUAL_HOST: admin.${domain}
+      PMA_HOST: $dbhost:3306
+      VIRTUAL_HOST: admin.$domain
     networks:
       - proxy
 
