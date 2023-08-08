@@ -1,0 +1,33 @@
+version: "3.8"
+
+services:
+  wordpress:
+    image: wordpress:php7.4-fpm-alpine
+    container_name: $acc_name
+    restart: always
+    environment:
+      WORDPRESS_DB_HOST: $dbhost:3306
+      WORDPRESS_DB_USER: $dbuser
+      WORDPRESS_DB_PASSWORD: $dbpassword
+      WORDPRESS_DB_NAME: $dbname
+      VIRTUAL_HOST: $domain
+      VIRTUAL_PROTO: fastcgi
+    volumes:
+      - ~/$acc_name:/var/www/html
+      - ~/php-fpm/www.conf:/usr/local/etc/php-fpm.d/www.conf
+    networks:
+      - proxy
+
+  phpmyadmin:
+    image: phpmyadmin
+    container_name: phpmyadmin
+    restart: always
+    environment:
+      PMA_HOST: ${dbhost}:3306
+      VIRTUAL_HOST: admin.${domain}
+    networks:
+      - proxy
+
+networks:
+  proxy:
+    external: true

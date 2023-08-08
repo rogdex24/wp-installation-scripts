@@ -1,6 +1,11 @@
 #!/bin/bash
 
 # AWS CLI SETUP
+if [ -z "$1" ]; then
+    echo "Usage: $0 <region>"
+    exit 1
+fi
+REGION="$1"
 
 mkdir -p ~/.aws
 
@@ -8,8 +13,6 @@ mkdir -p ~/.aws
 if [ ! -f ~/.aws/config ]; then
     touch ~/.aws/config
 fi
-
-REGION=$(aws ssm get-parameter --name "/myapp/REGION" --query "Parameter.Value" --output text)
 
 cat > ~/.aws/config <<EOF
 [default]
