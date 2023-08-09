@@ -10,13 +10,18 @@ services:
       WORDPRESS_DB_USER: $dbuser
       WORDPRESS_DB_PASSWORD: $dbpassword
       WORDPRESS_DB_NAME: $dbname
-      VIRTUAL_HOST: $domain
       VIRTUAL_PROTO: fastcgi
+      VIRTUAL_ROOT: $acc_name
+      VIRTUAL_HOST: $domain
     volumes:
       - ~/$acc_name:/var/www/html
       - ~/php-fpm/www.conf:/usr/local/etc/php-fpm.d/www.conf
     networks:
       - proxy
+
+  nginx-proxy-automation-web:
+    volumes:
+    - ~/$acc_name:/$acc_name:ro
 
   phpmyadmin:
     image: phpmyadmin
