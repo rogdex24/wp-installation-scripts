@@ -6,7 +6,7 @@ DOMAIN=$(aws ssm get-parameter --name "/myapp/DOMAIN" --query "Parameter.Value" 
 
 cp docker-compose.yml ~/docker-compose.yml
 
-mv php-fpm ~/php-fpm
+cp php-fpm ~/php-fpm
 
 # Replace the variables in the docker-compose.yml file
 sed -i "s/\$acc_name/$DB_NAME/g" ~/docker-compose.yml

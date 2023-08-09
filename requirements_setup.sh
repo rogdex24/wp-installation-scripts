@@ -14,6 +14,6 @@ sudo usermod -aG docker $USER
 # might need to logout and login again for some docker commands to run.
 
 # setup nginx proxy-server
-git clone --recurse-submodules https://github.com/evertramos/nginx-proxy-automation.git proxy
+git clone --recurse-submodules https://github.com/rogdex24/nginx-proxy-automation.git ~/proxy
 
-cd proxy/bin && sudo ./fresh-start.sh --yes -e "info@qressy.com"
+cd ~/proxy/bin && sudo ./fresh-start.sh --yes -e "info@qressy.com"

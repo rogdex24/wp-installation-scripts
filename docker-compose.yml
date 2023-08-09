@@ -29,7 +29,7 @@ services:
     restart: always
     environment:
       PMA_HOST: $dbhost:3306
-      VIRTUAL_HOST: admin.$domain
+      VIRTUAL_HOST: phpmyadmin.$domain
     networks:
       - proxy
 
