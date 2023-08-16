@@ -19,10 +19,6 @@ services:
     networks:
       - proxy
 
-  nginx-proxy-automation-web:
-    volumes:
-    - ~/$acc_name:/$acc_name:ro
-
   phpmyadmin:
     image: phpmyadmin
     container_name: phpmyadmin
