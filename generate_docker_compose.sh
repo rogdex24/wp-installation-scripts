@@ -2,7 +2,7 @@ DB_HOST=$(aws ssm get-parameter --name "/myapp/DB_HOST" --query "Parameter.Value
 DB_NAME=$(aws ssm get-parameter --name "/myapp/DB_NAME" --query "Parameter.Value" --output text)
 DB_NEWUSER=$(aws ssm get-parameter --name "/myapp/DB_NEWUSER" --with-decryption --query "Parameter.Value" --output text)
 DB_NEWPASSWORD=$(aws ssm get-parameter --name "/myapp/DB_NEWPASSWORD" --with-decryption --query "Parameter.Value" --output text)
-DOMAIN=$(aws ssm get-parameter --name "/myapp/DOMAIN" --query "Parameter.Value" --output text)
+DOMAIN=$(aws ssm get-parameter --name "/myapp/DOMAIN" --with-decryption --query "Parameter.Value" --output text)
 
 cp docker-compose.yml ~/docker-compose.yml
 
